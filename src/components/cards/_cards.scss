@@ -5,6 +5,37 @@
   box-shadow: inset 0 0 50px #257e7c;
 
   ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
     list-style: none;
+  }
+
+  /*   li {
+    width: 321px;
+    height: 461px;
+  } */
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  ul {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  ul {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }

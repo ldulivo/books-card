@@ -25,7 +25,9 @@ const Cards = () => {
                 :<ul>
                     {
                         allBooks.map( book => (
-                            <li key={book.ID}>{book.title}</li>
+                            <li key={book.ID}>
+                                <img src={book.cover} alt="{book.title}" srcset="" />
+                            </li>
                         ))
                     }
                 </ul>
