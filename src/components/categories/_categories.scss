@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Noto Sans Symbols 2";
+  src: url(../../fonts/NotoSansSymbols2-Regular.ttf);
+}
+
+.categories {
+  color: #4e1f1f;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+
+  .container {
+    background: transparent;
+    position: absolute;
+    padding: 5px 10px 5px 5px;
+  }
+
+  input {
+    display: none;
+
+    &:checked ~ .container {
+      //background: #ffd068;
+      padding: 5px 10px 5px 5px;
+      //height: 930px;
+    }
+
+    &:checked ~ .container ul {
+      display: block;
+      position: relative;
+      top: 50px;
+    }
+
+    &:checked ~ .container label p {
+      //background: none;
+      //font-size: 24px;
+      //margin: 0 0 5px 0;
+      //background: #ffd068;
+      &::before {
+        content: "Categories";
+        font-family: "Roboto Medium";
+        color: #4e1f1f;
+        font-size: 24px;
+        margin: 0 0 5px 0;
+        top: 24px;
+        left: 0;
+        width: 257px;
+        background: #ffd068;
+        padding: 0 0 16px 3px;
+      }
+    }
+  }
+
+  p {
+    //font-size: 12px;
+    //text-transform: uppercase;
+    //font-weight: bold;
+    //margin: 0;
+
+    &::before {
+      content: "𝋣";
+      font-family: "Noto Sans Symbols 2";
+      color: #ffd068;
+      font-size: 54px;
+      position: absolute;
+      top: -16px;
+      left: 18px;
+    }
+  }
+
+  ul {
+    display: none;
+    font-size: 18px;
+    list-style: none;
+    background: #ffd068;
+    padding: 0 0 0 20px;
+    left: -5px;
+
+    li {
+      cursor: pointer;
+      padding: 3px 0 3px 5px;
+      text-transform: uppercase;
+      width: 240px;
+
+      &:hover {
+        background: #fd0a3d;
+      }
+    }
+  }
+}
