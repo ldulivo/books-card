@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getCategories } from '../../redux/bookDucks';
+import Spinner from '../spinner/Spinner';
 
 const Categories = () => {
     const dispatch = useDispatch()
@@ -22,10 +23,13 @@ const Categories = () => {
             </label>
             <ul>
                 {
-                    categories.map( category => (
-                        <li key={category.category_id}>{category.name}</li>
-                    ))
+                    categories.length === 0
+                        ? <div className='categories_spinner'> <Spinner /> </div>
+                        : categories.map( category => (
+                                <li key={category.category_id}>{category.name}</li>
+                            ))
                 }
+                
             </ul>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks } from '../../redux/bookDucks';
+import Spinner from '../spinner/Spinner';
 
 
 const Cards = () => {
@@ -18,13 +19,17 @@ const Cards = () => {
     
   return (
       <div className='cards'>
-          <ul>
-                {
-                    allBooks.map( book => (
-                        <li key={book.ID}>{book.title}</li>
-                    ))
-                }
-            </ul>
+          {
+              allBooks.length === 0
+                ? <Spinner />
+                :<ul>
+                    {
+                        allBooks.map( book => (
+                            <li key={book.ID}>{book.title}</li>
+                        ))
+                    }
+                </ul>
+          }
       </div>
   );
 };

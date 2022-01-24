@@ -1,10 +1,11 @@
 import { Provider } from 'react-redux'
 
+import generateStore from './redux/store';
+
 import Header from './components/header/Header';
 import Cards from './components/cards/Cards';
 import Categories from './components/categories/Categories';
 
-import generateStore from './redux/store';
 
 import './App.scss';
 
