@@ -1,25 +1,26 @@
-import { Provider } from 'react-redux'
-
-import generateStore from './redux/store';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import Cards from './components/cards/Cards';
 import Categories from './components/categories/Categories';
-
+import Book from './components/book/Book';
 
 import './App.scss';
 
 function App() {
-
-  const store = generateStore()
+  
   return (
-    <Provider store={store}>
+    <BrowserRouter>
       <Header
         title="My título"
       />
       <Categories />
-      <Cards />
-    </Provider>
+      
+      <Routes>
+        <Route path='/' exact element={<Cards />} />
+        <Route path='/book' exact element={<Book />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

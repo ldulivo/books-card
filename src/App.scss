@@ -25,7 +25,26 @@
   font-family: "Roboto Light";
 }
 
+body {
+  //background: #00b6b1;
+  //box-shadow: inset 0 0 50px #257e7c;
+
+  //background: linear-gradient(0.25turn, #00b6b1, #ebf8e1, #f69d3c);
+  background: linear-gradient(
+    0.25turn,
+    #257e7c 0%,
+    #00b6b1 10%,
+    #00b6b1 90%,
+    #257e7c 100%
+  );
+}
+
+a {
+  text-decoration: none;
+}
+
 @import "./components/header/header";
 @import "./components/cards/cards";
 @import "./components/categories/_categories.scss";
+@import "./components/book/book";
 @import "./components/spinner/spinner";

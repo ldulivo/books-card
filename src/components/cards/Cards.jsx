@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBooks } from '../../redux/bookDucks';
+import { getBooks, getBookId } from '../../redux/bookDucks';
 import Spinner from '../spinner/Spinner';
 
 
@@ -25,8 +26,20 @@ const Cards = () => {
                 :<ul>
                     {
                         allBooks.map( book => (
-                            <li key={book.ID}>
-                                <img src={book.cover} alt="{book.title}" srcset="" />
+                            <li key={book.ID} onClick={() => dispatch( getBookId(book) ) }>
+                                <Link to="/book">
+                                    <article>
+                                        <header>
+                                            <img src={book.cover} alt={book.title} />
+                                        </header>
+                                        <footer>
+                                            <p>{book.pages}</p>
+                                            <p>{book.language}</p>
+                                            <p>{book.publisher_date}</p>
+                                        </footer>
+                                    </article>
+
+                                </Link>
                             </li>
                         ))
                     }

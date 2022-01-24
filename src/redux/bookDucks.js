@@ -7,7 +7,8 @@ const bookData = {
     books: [],
     categories: [],
     results_range: "0,10",
-    category: "all"
+    category: "all",
+    onBook: []
 }
 
 /**
@@ -15,6 +16,7 @@ const bookData = {
  */
 const GET_BOOKS_SUCCESSFULLY = 'GET_BOOKS_SUCCESSFULLY'
 const GET_CATEGORIES_SUCCESSFULLY = 'GET_CATEGORIES_SUCCESSFULLY'
+const GET_ONE_BOOK_SUCCESSFULLY = "GET_ONE_BOOK_SUCCESSFULLY"
 
 /**
  * REDUCER
@@ -25,6 +27,8 @@ export default function bookReducer( state = bookData, action ) {
             return { ...state, ...action.payload }
         case GET_CATEGORIES_SUCCESSFULLY:
             return { ...state, categories: action.payload }
+        case GET_ONE_BOOK_SUCCESSFULLY:
+            return { ...state, onBook: action.payload}
     
         default:
             return state
@@ -78,3 +82,10 @@ export const getCategories = () => async ( dispatch, getState ) => {
 /* export const changeCategory = ( category ) => ( dispatch, getState ) => {
 
 } */
+export const getBookId = ( id ) => async ( dispatch, getState ) => {
+
+    dispatch({
+        type: GET_ONE_BOOK_SUCCESSFULLY,
+        payload: id
+    })
+}

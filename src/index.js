@@ -3,9 +3,19 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 
+
+import { Provider } from 'react-redux'; /* Redux */
+import generateStore from './redux/store'; /* Redux */
+
+const store = generateStore() /* Redux */
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    <Provider store={store}>
+      <App />
+    </Provider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
