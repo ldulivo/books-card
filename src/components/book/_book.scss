@@ -3,6 +3,22 @@
   margin: 0 auto;
   padding: 30px 0 0 0;
 
+  .back_to_root {
+    font-size: 1.1em;
+    color: #ffffff;
+    text-shadow: #555 2px 2px 3px;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content: "◀";
+      font-family: "Noto Sans Symbols 2";
+      margin: 0 5px 0 0;
+      position: relative;
+      top: -1px;
+    }
+  }
+
   h2,
   h3 {
     color: #ffffff;
@@ -94,5 +110,30 @@
 
   main {
     text-align: justify;
+  }
+
+  @media (max-width: 890px) {
+    width: 100%;
+
+    header {
+      grid-template:
+        "imgss title"
+        "imgss subti"
+        "imgss detai"
+        "extra extra";
+    }
+  }
+
+  @media (max-width: 680px) {
+    width: 100%;
+
+    header {
+      grid-template:
+        "title"
+        "subti"
+        "imgss"
+        "detai"
+        "extra";
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Book = () => {
@@ -6,6 +7,9 @@ const Book = () => {
     console.log(book);
   return (
     <article className='book'>
+        <Link to="/">
+            <div className="back_to_root">Back</div>
+        </Link>
         <header>
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
