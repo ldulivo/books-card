@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getCategories, getBooks } from '../../redux/bookDucks';
+import { getCategories } from '../../redux/bookDucks';
 import Spinner from '../spinner/Spinner';
 
 const Categories = () => {
     const dispatch = useDispatch()
     const categories = useSelector( store => store.books.categories )
-    console.log(categories);
 
     useEffect(() => {
         dispatch( getCategories() )
@@ -21,18 +21,34 @@ const Categories = () => {
         <div className="container">
             <label htmlFor="categories">
                 <p></p>
-            
-            <ul>
-                {
-                    categories.length === 0
-                        ? <div className='categories_spinner'> <Spinner /> </div>
-                        : categories.map( category => (
-                                <li key={category.category_id} onClick={() => dispatch( getBooks(category.name) )} >{category.name}</li>
-                            ))
-                }
-                
-            </ul>
             </label>
+            
+                <ul>
+                    <Link to="/" state={{resetCountPage: true}} >
+                        <li className='all__categories' >
+                            Todas las Categorías
+                        </li>
+                    </Link>
+                    {
+                        categories.length === 0
+                            ? <div className='categories_spinner'> <Spinner /> </div>
+                            : categories.map( category => (
+                                
+                                <Link 
+                                    key={category.category_id} 
+                                    to={`/${category.name}`} 
+                                    state={{resetCountPage: true}} 
+                                >
+                                    <li >
+                                        {category.name}
+                                    </li>
+                                </Link>
+                                
+                                ))
+                    }
+                    
+                </ul>
+
             
         </div>
     </div>

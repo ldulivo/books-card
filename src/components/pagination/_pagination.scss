@@ -1,0 +1,29 @@
+.pagination {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+
+  button,
+  select {
+    color: $color_text1;
+    background-color: $color1;
+    padding: 1px 12px;
+    margin: 3px;
+    text-align: center;
+  }
+
+  button {
+    &:disabled {
+      background-color: $color5;
+    }
+  }
+
+  select {
+    font-size: 1em;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}

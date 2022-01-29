@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import fileDownload from './img/file_download_black_24dp.svg'
 
 const Book = () => {
+
+    const url = useLocation().state.url;
     const book = useSelector( store => store.books.onBook)
-    console.log(book);
   return (
     <article className='book'>
-        <Link to="/">
+        <Link to={url} state={{resetCountPage: false}} >
             <div className="back_to_root">Back</div>
         </Link>
         <header>
@@ -45,6 +47,12 @@ const Book = () => {
             <h3>Content</h3>
             <p>{book.content}</p>
         </main>
+        <footer>
+            <p>Contenido disponible para descargar en su web oficial</p>
+            <a href={book.url_download} target="_blank" rel="noopener noreferrer" >
+                <img src={fileDownload} alt="" />
+            </a>
+        </footer>
     </article>
   );
 };

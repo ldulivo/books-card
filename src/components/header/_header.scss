@@ -1,8 +1,24 @@
 header {
-  background: #fd0a3d;
+  background: $color3;
+
+  h1 {
+    text-shadow: $color_text_shadow;
+    color: $color_text1;
+  }
 
   .container {
     margin: 0 0 0 95px;
     padding: 5px;
+
+    p {
+      display: flex;
+      letter-spacing: 0.3em;
+      font-weight: bolder;
+    }
+
+    span {
+      margin: 0 0 0 5px;
+      font-weight: normal;
+    }
   }
 }

@@ -1,22 +1,14 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBooks, getBookId } from '../../redux/bookDucks';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getBookId } from '../../redux/bookDucks';
 import Spinner from '../spinner/Spinner';
 
 
-const Cards = () => {
+const Cards = ({ allBooks }) => {
 
+    const url = useLocation().pathname;
     const dispatch = useDispatch();
-    const allBooks = useSelector( store => store.books.books );
-    const info = useSelector( store => store.books )
-    console.log('allBooks', allBooks);
-    console.log(('info', info));
-
-    useEffect(() => {
-        dispatch( getBooks() )
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     
   return (
       <div className='cards'>
@@ -27,7 +19,7 @@ const Cards = () => {
                     {
                         allBooks.map( book => (
                             <li key={book.ID} onClick={() => dispatch( getBookId(book) ) }>
-                                <Link to="/book">
+                                <Link to="/book" state={ {url} } >
                                     <article>
                                         <header>
                                             <img src={book.cover} alt={book.title} />

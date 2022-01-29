@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Noto Sans Symbols 2";
-  src: url(../../fonts/NotoSansSymbols2-Regular.ttf);
-}
-
 .categories {
   color: #4e1f1f;
   display: block;
@@ -28,21 +23,47 @@
     &:checked ~ .container ul {
       display: block;
       position: relative;
-      top: 50px;
+      top: 16px;
     }
 
     &:checked ~ .container label p {
+      width: 265px;
+      position: relative;
+      left: -5px;
+      background: $color2;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+
       &::before {
-        content: "Categories X";
+        content: "Categorías";
         font-family: "Roboto Medium";
-        color: #4e1f1f;
+        color: $color1;
         font-size: 24px;
         margin: 0 0 5px 0;
         top: 24px;
         left: 0;
         width: 257px;
-        background: #ffd068;
+        background: $color2;
         padding: 0 0 16px 3px;
+        position: relative;
+        width: 200px;
+      }
+
+      &::after {
+        content: "🯀";
+        font-family: "Noto Sans Symbols 2";
+        color: $color1;
+        font-size: 24px;
+        margin: 0 0 5px 0;
+        top: 21px;
+        left: 0;
+        width: 257px;
+        background: $color2;
+        padding: 0 10px 16px 3px;
+        position: relative;
+        width: 100%;
+        text-align: end;
       }
     }
   }
@@ -51,7 +72,7 @@
     &::before {
       content: "𝋣";
       font-family: "Noto Sans Symbols 2";
-      color: #ffd068;
+      color: $color2;
       font-size: 54px;
       position: absolute;
       top: -16px;
@@ -63,7 +84,7 @@
     display: none;
     font-size: 18px;
     list-style: none;
-    background: #ffd068;
+    background: $color2;
     padding: 0 0 0 20px;
     left: -5px;
 
@@ -74,8 +95,12 @@
       width: 240px;
 
       &:hover {
-        background: #fd0a3d;
+        background: $color3;
       }
+    }
+
+    .all__categories {
+      font-weight: bolder;
     }
   }
 

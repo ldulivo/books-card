@@ -6,7 +6,8 @@ import axios from "axios"
 const bookData = {
     books: [],
     categories: [],
-    results_range: "0,10",
+    page_star: 0,
+    amount_per_page: 10,
     category: "all",
     onBook: []
 }
@@ -14,9 +15,11 @@ const bookData = {
 /**
  * TYPES
  */
-const GET_BOOKS_SUCCESSFULLY = 'GET_BOOKS_SUCCESSFULLY'
-const GET_CATEGORIES_SUCCESSFULLY = 'GET_CATEGORIES_SUCCESSFULLY'
-const GET_ONE_BOOK_SUCCESSFULLY = "GET_ONE_BOOK_SUCCESSFULLY"
+const GET_BOOKS_SUCCESSFULLY        = 'GET_BOOKS_SUCCESSFULLY'
+const GET_CATEGORIES_SUCCESSFULLY   = 'GET_CATEGORIES_SUCCESSFULLY'
+const GET_ONE_BOOK_SUCCESSFULLY     = "GET_ONE_BOOK_SUCCESSFULLY"
+const EMPTIES_BOOKS                 = 'EMPTIES_BOOKS'
+const RESET_PAGES                   = 'RESET_PAGES'
 
 /**
  * REDUCER
@@ -29,6 +32,10 @@ export default function bookReducer( state = bookData, action ) {
             return { ...state, categories: action.payload }
         case GET_ONE_BOOK_SUCCESSFULLY:
             return { ...state, onBook: action.payload}
+        case EMPTIES_BOOKS:
+            return { ...state, books: action.payload}
+        case RESET_PAGES:
+            return { ...state, page_star: action.payload}
     
         default:
             return state
@@ -38,34 +45,36 @@ export default function bookReducer( state = bookData, action ) {
 /**
  * ACTIONS
  */
-export const getBooks = ( category = null ) => async ( dispatch, getState ) => {
-    const results_range = getState().books.results_range;
-    if (category === null)
-    {
-        category = getState().books.category
-    }
+export const getBooks = ( obj=[] ) => async ( dispatch, getState ) => {
+    let { page_star = getState().books.page_star } = obj;
+    let { amount_per_page = getState().books.amount_per_page } = obj;
+    let { category = getState().books.category } = obj;
+    
     //https://www.etnassoft.com/api/v1/get/?results_range=0,10
     //const urlApi = 'https://www.etnassoft.com/api/v1/get/?results_range=0,10'
-    const urlApi = `https://www.etnassoft.com/api/v1/get/?results_range=${parseInt(results_range)}&category=${category}`
+    const urlApi = `https://www.etnassoft.com/api/v1/get/?results_range=${page_star},${amount_per_page}&category=${category}`
 
     try {
         const res = await axios.get(urlApi)
-        //payload: res.data
-        dispatch({
-            type: GET_BOOKS_SUCCESSFULLY,
-            payload: {
-                books: res.data,
-                results_range: "0,10",
-                category
-            }
-        })
+        
+        if (res.status === 200) {
+            
+            dispatch({
+                type: GET_BOOKS_SUCCESSFULLY,
+                payload: {
+                    books: res.data,
+                    page_star,
+                    amount_per_page,
+                    category
+                }
+            })
+        }
     } catch (error) {
         console.log(error);
     }
 }
 
 export const getCategories = () => async ( dispatch, getState ) => {
-    //https://www.etnassoft.com/api/v1/get/?get_categories=all
     const urlApi = 'https://www.etnassoft.com/api/v1/get/?get_categories=all'
 
     try {
@@ -79,13 +88,26 @@ export const getCategories = () => async ( dispatch, getState ) => {
     }
 }
 
-/* export const changeCategory = ( category ) => ( dispatch, getState ) => {
-
-} */
 export const getBookId = ( id ) => async ( dispatch, getState ) => {
 
     dispatch({
         type: GET_ONE_BOOK_SUCCESSFULLY,
         payload: id
+    })
+}
+
+export const emptiesBooks = () => ( dispatch, getState ) => {
+
+    dispatch({
+        type: EMPTIES_BOOKS,
+        payload: []
+    })
+}
+
+export const resetPages = () => ( dispatch, getState ) => {
+
+    dispatch({
+        type: RESET_PAGES,
+        payload: 0
     })
 }
