@@ -8,7 +8,7 @@ const bookData = {
     categories: [],
     page_star: 0,
     amount_per_page: 10,
-    category: "all",
+    category: null,
     onBook: []
 }
 
@@ -49,10 +49,13 @@ export const getBooks = ( obj=[] ) => async ( dispatch, getState ) => {
     let { page_star = getState().books.page_star } = obj;
     let { amount_per_page = getState().books.amount_per_page } = obj;
     let { category = getState().books.category } = obj;
-    
-    //https://www.etnassoft.com/api/v1/get/?results_range=0,10
-    //const urlApi = 'https://www.etnassoft.com/api/v1/get/?results_range=0,10'
-    const urlApi = `https://www.etnassoft.com/api/v1/get/?results_range=${page_star},${amount_per_page}&category=${category}`
+    let urlApi;
+
+    if ( category === 0 ) {
+        urlApi = `https://www.etnassoft.com/api/v1/get/?results_range=${page_star},${amount_per_page}`
+    } else {
+        urlApi = `https://www.etnassoft.com/api/v1/get/?results_range=${page_star},${amount_per_page}&category_id=${category}`
+    }
 
     try {
         const res = await axios.get(urlApi)

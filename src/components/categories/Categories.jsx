@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getCategories } from '../../redux/bookDucks';
@@ -24,25 +24,26 @@ const Categories = () => {
             </label>
             
                 <ul>
-                    <Link to="/" state={{resetCountPage: true}} >
+                    <NavLink to="/" state={{resetCountPage: true}} >
                         <li className='all__categories' >
                             Todas las Categorías
                         </li>
-                    </Link>
+                    </NavLink>
                     {
                         categories.length === 0
                             ? <div className='categories_spinner'> <Spinner /> </div>
                             : categories.map( category => (
                                 
-                                <Link 
+                                <NavLink 
                                     key={category.category_id} 
-                                    to={`/${category.name}`} 
+                                    //to={`/${String(category.name).normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`} 
+                                    to={`/${category.category_id}`} 
                                     state={{resetCountPage: true}} 
                                 >
                                     <li >
                                         {category.name}
                                     </li>
-                                </Link>
+                                </NavLink>
                                 
                                 ))
                     }

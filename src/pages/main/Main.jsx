@@ -9,20 +9,20 @@ import Spinner from '../../components/spinner/Spinner';
 import Pagination from '../../components/pagination/Pagination';
 
 const Main = () => {
-    const {resetCountPage} = useLocation().state
+    const useLocationState = useLocation().state;
+    let resetCountPage = false;
+    if ( useLocationState != null ) {
+        resetCountPage = useLocationState.resetCountPage;
+    }
 
     /* Redux */
     const dispatch = useDispatch();
     const allBooks = useSelector( store => store.books.books );
-    const info = useSelector( store => store.books )
 
     /* Get params URL */
     let params = useParams();
     let category;
-    (params.category !== undefined) ? category = params.category : category = 'all'
-
-    console.log('allBooks', allBooks);
-    console.log(('info', info));
+    (params.category !== undefined) ? category = params.category : category = 0
 
     useEffect(() => {
         dispatch( getBooks( {category} ) )

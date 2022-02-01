@@ -102,6 +102,12 @@
     .all__categories {
       font-weight: bolder;
     }
+
+    .active li {
+      font-weight: bolder;
+      background: #f0f8ff;
+      border-radius: 10px;
+    }
   }
 
   .categories_spinner {

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Header = ({ title }) => {
-  //const [ categories, setCategories ] = useState('All')
 
   const category = useSelector( store => store.books.category)
+  const categories = useSelector( store => store.books.categories)
+  const [ categoryName, setCategoryName ] = useState("Todas");
+
+  useEffect(() => {
+    categories.map( item => (item.category_id === parseInt(category)) && setCategoryName(item.name) )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   return (
     <header>
@@ -15,9 +21,9 @@ const Header = ({ title }) => {
                   >Categorías:
                   <span>
                     {
-                      category === "all"
+                      category === 0
                         ? "Todas"
-                        : category
+                        : categoryName
                     }
                   </span>
                 </p>
