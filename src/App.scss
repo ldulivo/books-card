@@ -37,6 +37,7 @@ $color2: #ffd068;
 $color3: #fd0a3d;
 $color4: #2ddd32;
 $color5: #5a5353;
+$color6: #f0f8ff;
 
 /* SETUP */
 * {
@@ -72,6 +73,7 @@ a {
 @import "./components/categories/_categories.scss";
 @import "./components/spinner/spinner";
 @import "./components/pagination/pagination";
+@import "./components/footer/footer";
 
 @import "./pages/main/main";
 @import "./pages/book/book";

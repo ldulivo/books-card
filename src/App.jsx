@@ -9,6 +9,7 @@ import Main from './pages/main/Main';
 import Book from './pages/book/Book';
 
 import './App.scss';
+import Footer from './components/footer/Footer';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
           <Route path=':id' element={<Book />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
